@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Tue Jan 10 13:59:35 2017 Joubert Miguel
-** Last update Thu Mar 16 14:48:35 2017 Joubert Miguel
+** Last update Wed Mar 22 00:28:57 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -124,5 +124,5 @@ int	main(int ac, char **av, char **env)
 	my_second_shell(env, Sh, ret);
       (isatty(0) == 1) ? my_putstr("$>MIGZER ") : 0;
     }
-  return (8);
+  return (0);
 }
