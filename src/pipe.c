@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Mon Mar 13 12:16:06 2017 Joubert Miguel
-** Last update Wed Mar 22 14:32:34 2017 Joubert Miguel
+** Last update Wed Mar 22 14:44:13 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -49,7 +49,7 @@ void		exec_pipe_son(char **cmd, char **env, int index)
   pid_t		pid;
   int   	pfd[2];
 
-  if ((pipe(pfd) == - 1))
+  if ((pipe(pfd)) == - 1)
     exit (1);
   if ((pid = fork()) == -1)
     exit (1);
