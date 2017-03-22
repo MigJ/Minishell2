@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Mon Mar 13 12:16:06 2017 Joubert Miguel
-** Last update Thu Mar 16 00:25:52 2017 Joubert Miguel
+** Last update Wed Mar 22 12:49:06 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -49,9 +49,10 @@ void		exec_pipe_son(char **cmd, char **env, int index)
   pid_t		pid;
   int   	pfd[2];
 
-  pipe(pfd);
+  if (pipe(pfd - 1))
+    exit (1);
   if ((pid = fork()) == -1)
-    exit (84);
+    exit (1);
   else if (pid == 0)
     {
       command = my_str_to_wordtab(cmd[index], ' ', 0);
@@ -80,7 +81,8 @@ int		exec_pipe(char **cmd, char **env)
 {
   pid_t		pid;
 
-  pid = fork();
+  if ((pid = fork()) == -1)
+    return (1);
   if (pid == 0)
     {
       exec_pipe_son(cmd, env, 0);

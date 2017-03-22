@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Wed Mar 15 23:53:18 2017 Joubert Miguel
-** Last update Thu Mar 16 15:26:28 2017 Joubert Miguel
+** Last update Wed Mar 22 12:43:26 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -47,7 +47,7 @@ void		exec_double_in_son(char *cmd, char **env, t_shell Sh)
   dup2(pfd[0], 0);
   close(pfd[0]);
   Sh.s = check_space(command[0]);
-  my_first_shell(env, Sh, 0);  
+  my_first_shell(&env, Sh, 0);  
 }
 
 void		exec_double_in(char *cmd, char **env, t_shell Sh)

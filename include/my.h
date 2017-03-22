@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Wed Jan 11 12:15:53 2017 Joubert Miguel
-** Last update Thu Mar 16 15:08:10 2017 Joubert Miguel
+** Last update Wed Mar 22 12:45:47 2017 Joubert Miguel
 */
 
 # ifndef _MY_H
@@ -79,9 +79,9 @@ void		my_command(char *, char **);
 
 int		pars_my_cmd(char *);
 
-int		my_first_shell(char **, t_shell, int);
+int		my_first_shell(char ***, t_shell, int);
 
-void            my_second_shell(char **, t_shell, int);
+int             my_second_shell(char ***, t_shell, int);
 
 char		**my_ret_args(char **, char *);
 

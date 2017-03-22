@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Tue Jan 10 13:59:35 2017 Joubert Miguel
-** Last update Wed Mar 22 00:28:57 2017 Joubert Miguel
+** Last update Wed Mar 22 12:50:35 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -78,7 +78,7 @@ char	**verify_path(char **env)
   return (dest);
 }
 
-int	my_first_shell(char **env, t_shell Sh, int ret)
+int	my_first_shell(char ***env, t_shell Sh, int ret)
 {
   if (*Sh.s == 0) return (-1);
   (my_strcmp(*my_str_to_wordtab(Sh.s, ' ', 0), "exit") == 0
@@ -87,12 +87,12 @@ int	my_first_shell(char **env, t_shell Sh, int ret)
   (my_strncmp(Sh.s, "exit", 4) == 0 && Sh.s[5] != 0) ? my_putstr("exit\n"),
     exit(my_getnbr(my_str_to_wordtab(Sh.s, ' ', 0)[1])) : 0;
   ret = 0;
-  if ((ret = verify_cmd(env, Sh.s, 1, ret)) != 1) env = my_cd(Sh.s, env);
-  if ((ret = verify_cmd(env, Sh.s, 0, ret)) != 1) env = my_env(env, Sh.s);
-  if ((ret = verify_cmd(env, Sh.s, 9, ret)) != 1 && verify_fork(Sh.s) != -1)
+  if ((ret = verify_cmd(*env, Sh.s, 1, ret)) != 1) *env = my_cd(Sh.s, *env);
+  if ((ret = verify_cmd(*env, Sh.s, 0, ret)) != 1) *env = my_env(*env, Sh.s);
+  if ((ret = verify_cmd(*env, Sh.s, 9, ret)) != 1 && verify_fork(Sh.s) != -1)
     {
       if ((Sh.pid = fork()) == -1) exit (84);
-      else if (Sh.pid == 0) my_command(Sh.s, env);
+      else if (Sh.pid == 0) my_command(Sh.s, *env);
       else
 	{
 	  wait(&Sh.wd);
@@ -100,7 +100,7 @@ int	my_first_shell(char **env, t_shell Sh, int ret)
 	    ? 1 : my_signal(Sh.wd) : my_signal(Sh.wd);
 	}
     }
-  return (0);
+  return (ret);
 }
 
 int	main(int ac, char **av, char **env)
@@ -117,12 +117,12 @@ int	main(int ac, char **av, char **env)
     {
       if (check_shell(Sh.s) == 1)
 	{
-	  if (my_first_shell(env, Sh, ret) < 0)
+	  if ((ret = my_first_shell(&env, Sh, ret)) < 0)
 	    (isatty(0) == 1) ? my_putstr("$>MIGZER ") : 0;
 	}
       else
-	my_second_shell(env, Sh, ret);
-      (isatty(0) == 1) ? my_putstr("$>MIGZER ") : 0;
+	if ((ret = my_second_shell(&env, Sh, ret)))
+	  (isatty(0) == 1) ? my_putstr("$>MIGZER ") : 0;
     }
-  return (0);
+  return (ret);
 }

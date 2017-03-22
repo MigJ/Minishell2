@@ -5,12 +5,12 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Wed Mar 15 13:28:52 2017 Joubert Miguel
-** Last update Thu Mar 16 15:08:17 2017 Joubert Miguel
+** Last update Wed Mar 22 12:47:57 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
 
-void		my_second_shell(char **env, t_shell Sh, int ret)
+int		my_second_shell(char ***env, t_shell Sh, int ret)
 {
   char		**cmd;
   int		i;
@@ -20,17 +20,18 @@ void		my_second_shell(char **env, t_shell Sh, int ret)
   while ((Sh.s = check_space(cmd[i])))
     {
       if (is_piped(Sh.s) == 1)
-	exec_pipe(get_pipe_cmd(Sh.s), env);
+	ret = exec_pipe(get_pipe_cmd(Sh.s), *env);
       else if (is_out(Sh.s) == 1)
-	exec_out(Sh.s, env);
+	exec_out(Sh.s, *env);
       else if (is_in(Sh.s) == 1)
-	exec_in(Sh.s, env);
+	exec_in(Sh.s, *env);
       else if (is_double_out(Sh.s) == 1)
-	exec_double_out(Sh.s, env);
+	exec_double_out(Sh.s, *env);
       else if (is_double_in(Sh.s) == 1)
-	exec_double_in(Sh.s, env, Sh);
+	exec_double_in(Sh.s, *env, Sh);
       else
-	my_first_shell(env, Sh, ret);
+	ret = my_first_shell(env, Sh, ret);
       i++;
     }
+  return (ret);
 }
