@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Wed Jan 11 12:15:53 2017 Joubert Miguel
-** Last update Wed Mar 22 12:45:47 2017 Joubert Miguel
+** Last update Wed Mar 22 14:26:12 2017 Joubert Miguel
 */
 
 # ifndef _MY_H
@@ -54,6 +54,10 @@ char		*get_next_line(const int);
 char            *ret_good_path(int, char **, char **);
 
 char            *my_memset(int);
+
+char		**my_str_sep(char *, char);
+
+char            *epur_str(char *);
 
 /* CD */
 

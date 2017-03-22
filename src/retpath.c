@@ -5,10 +5,39 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Fri Jan 20 18:53:13 2017 Joubert Miguel
-** Last update Thu Mar 16 00:31:47 2017 Joubert Miguel
+** Last update Wed Mar 22 13:23:38 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
+
+char	**my_str_sep(char *str, char sep)
+{
+  char	**arr;
+  int	i;
+  int	j;
+  int	k;
+
+  if ((arr = malloc(sizeof(char *) * 30)) == NULL)
+    exit (84);
+  i = j = k = 0;
+  while (i < 30)
+    arr[i++] = my_memset(40);
+  i = 0;
+  while (str[i])
+    {
+      while (str[i] == '\t')
+	i++;
+      if (str[i] == sep)
+	{
+	  i++, j++;
+	  k = 0;
+	}
+      arr[j][k] = str[i];
+      k++, i++;
+    }
+  arr[++j] = NULL;
+  return (arr);
+}
 
 char	**my_ret_path_env(char **env, char *str, int cmp)
 {

@@ -1,21 +1,21 @@
-==4794== Memcheck, a memory error detector
-==4794== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
-==4794== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
-==4794== Command: ./mysh
-==4794== Parent PID: 3228
-==4794== 
-==4794== 
-==4794== HEAP SUMMARY:
-==4794==     in use at exit: 1,299,483 bytes in 1,116 blocks
-==4794==   total heap usage: 1,116 allocs, 0 frees, 1,299,483 bytes allocated
-==4794== 
-==4794== LEAK SUMMARY:
-==4794==    definitely lost: 697,646 bytes in 589 blocks
-==4794==    indirectly lost: 593,640 bytes in 525 blocks
-==4794==      possibly lost: 0 bytes in 0 blocks
-==4794==    still reachable: 8,197 bytes in 2 blocks
-==4794==         suppressed: 0 bytes in 0 blocks
-==4794== Rerun with --leak-check=full to see details of leaked memory
-==4794== 
-==4794== For counts of detected and suppressed errors, rerun with: -v
-==4794== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==8575== Memcheck, a memory error detector
+==8575== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==8575== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==8575== Command: ./mysh
+==8575== Parent PID: 3152
+==8575== 
+==8575== 
+==8575== HEAP SUMMARY:
+==8575==     in use at exit: 1,297,348 bytes in 1,242 blocks
+==8575==   total heap usage: 1,242 allocs, 0 frees, 1,297,348 bytes allocated
+==8575== 
+==8575== LEAK SUMMARY:
+==8575==    definitely lost: 691,561 bytes in 631 blocks
+==8575==    indirectly lost: 597,590 bytes in 609 blocks
+==8575==      possibly lost: 0 bytes in 0 blocks
+==8575==    still reachable: 8,197 bytes in 2 blocks
+==8575==         suppressed: 0 bytes in 0 blocks
+==8575== Rerun with --leak-check=full to see details of leaked memory
+==8575== 
+==8575== For counts of detected and suppressed errors, rerun with: -v
+==8575== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

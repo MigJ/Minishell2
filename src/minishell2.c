@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Wed Mar 15 13:28:52 2017 Joubert Miguel
-** Last update Wed Mar 22 12:47:57 2017 Joubert Miguel
+** Last update Wed Mar 22 14:29:48 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -15,7 +15,7 @@ int		my_second_shell(char ***env, t_shell Sh, int ret)
   char		**cmd;
   int		i;
 
-  cmd = my_str_to_wordtab(Sh.s, ';', 0);
+  cmd = my_str_sep(Sh.s, ';');
   i = ret = 0;
   while ((Sh.s = check_space(cmd[i])))
     {

@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Wed Mar 15 13:06:25 2017 Joubert Miguel
-** Last update Thu Mar 16 00:23:38 2017 Joubert Miguel
+** Last update Wed Mar 22 14:26:21 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -36,14 +36,42 @@ char            *check_space(char *str)
     return (NULL);
   dest = my_memset(my_strlen(str) * 10);
   i = j = 0;
-  while (str[i] == ' ')
+  while (str[i] == ' ' || str[i] == '\t')
     i++;
   while (str[i])
     {
       dest[j] = str[i];
       j++, i++;
     }
-  while (str[--i] == ' ')
+  while (str[--i] == ' ' || str[i] == '\t')
     dest[--j] = 0;
   return (dest);
+}
+
+char		*epur_str(char *s)
+{
+  char		*str;
+  size_t	i;
+  size_t	j;
+
+  i = j = 0;
+  while ((s[i] == ' ' || s[i] == '\t') && s[i] != '\0')
+    i++;
+  str = my_memset(my_strlen(s) + 1 - i);
+  while (s[i] != '\0')
+    {
+      if ((s[i] == ' ' || s[i] == '\t')
+	  && (s[i + 1] != ' ' && s[i + 1] != '\t') && s[i + 1] != 0)
+	str[j++] = s[i];
+      else if ((s[i] == ' ' || s[i] == '\t')
+	       && (s[i + 1] == ' ' || s[i + 1] == '\t') && s[i + 1] != 0)
+	i = i;
+      else
+	str[j++] = s[i];
+      if (s[i + 1] == '\0')
+	break;
+      i++;
+    }
+  str[j] = 0;
+  return (str);
 }
