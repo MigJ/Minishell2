@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Wed Jan 11 12:15:53 2017 Joubert Miguel
-** Last update Wed Mar 22 14:26:12 2017 Joubert Miguel
+** Last update Thu Mar 23 13:44:34 2017 Joubert Miguel
 */
 
 # ifndef _MY_H
@@ -165,11 +165,17 @@ int		is_out(char *);
 
 void            exec_out(char *, char **);
 
-/* IN */
+/*
+** IN
+*/
 
 int             is_in(char *);
 
 void            exec_in(char *, char **);
+
+void		create_file_before(char *, char **);
+
+void		is_file_to_create(char **, char **);
 
 /* DOUBLE OUT */
 

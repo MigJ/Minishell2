@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Wed Mar 15 22:38:13 2017 Joubert Miguel
-** Last update Thu Mar 16 00:08:36 2017 Joubert Miguel
+** Last update Thu Mar 23 13:56:37 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -13,15 +13,23 @@
 int             is_in(char *str)
 {
   int           i;
+  int		count;
 
+  count = 0;
   i = -1;
   while (str[++i])
     {
       if (str[i] == '<' && str[i + 1] == '<')
 	return (0);
       else if (str[i] == '<' && str[i + 1] != '<')
-	return (1);
+	count++;
     }
+  if (count == 1)
+    return (1);
+  else if (count > 1) {
+    my_putstr("Ambiguous input redirect.\n");
+    return (-1);
+  }
   return (0);
 }
 
