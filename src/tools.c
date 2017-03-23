@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Fri Jan 20 18:50:34 2017 Joubert Miguel
-** Last update Wed Mar 15 12:59:55 2017 Joubert Miguel
+** Last update Thu Mar 23 14:56:57 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -76,7 +76,10 @@ int	my_strlen_d_char(char **str)
   int	i;
 
   i = 0;
-  while (str[i] != NULL)
+  while (str[i] != NULL) {
+    if (*str[i] == 0)
+      break;
     i++;
+  }
   return (i);
 }

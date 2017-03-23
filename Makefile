@@ -5,12 +5,12 @@
 ## Login   <miguel.joubert@epitech.eu>
 ## 
 ## Started on  Wed Mar 15 13:04:12 2017 Joubert Miguel
-## Last update Thu Mar 16 01:18:30 2017 Joubert Miguel
+## Last update Thu Mar 23 15:16:30 2017 Joubert Miguel
 ##
 
 CC	=	gcc
 
-FLAGS	=	-g -Wall -Werror -W -Wextra
+FLAGS	=	-g -Wall -W -Wextra
 
 PROJECT =	src/minishell1.c		\
 		src/minishell2.c		\
@@ -28,6 +28,7 @@ PROJECT =	src/minishell1.c		\
 		src/signal.c			\
 		src/tools.c			\
 		src/tools_bis.c			\
+		src/verify_pipe.c		\
 		src/verify_cd.c			\
 		src/verify_env.c		\
 		src/verify.c			\

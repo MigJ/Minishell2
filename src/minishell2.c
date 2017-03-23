@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Wed Mar 15 13:28:52 2017 Joubert Miguel
-** Last update Thu Mar 23 13:59:06 2017 Joubert Miguel
+** Last update Thu Mar 23 14:54:29 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -17,7 +17,7 @@ void		is_file_to_create(char **cmd, char **env)
   i = 0;
   while (cmd[i])
     {
-      if (is_out(cmd[i]) == 1)
+      if (is_out(cmd[i]) == 1 || is_in(cmd[i]) == 1)
 	create_file_before(cmd[i], env);
       i++;
     }
@@ -34,7 +34,9 @@ int		my_second_shell(char ***env, t_shell Sh, int ret)
   i = ret = 0;
   while ((Sh.s = check_space(cmd[i])))
     {
-      if (is_piped(Sh.s) == 1)
+      if (null_cmd(Sh.s, get_pipe_cmd(Sh.s)) == -1)
+	return (1);
+      else if (is_piped(Sh.s) == 1)
 	ret = exec_pipe(get_pipe_cmd(Sh.s), *env);
       else if ((error_out = is_out(Sh.s)) == 1)
 	exec_out(Sh.s, *env);

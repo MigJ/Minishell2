@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Wed Mar 15 13:06:25 2017 Joubert Miguel
-** Last update Wed Mar 22 14:26:21 2017 Joubert Miguel
+** Last update Thu Mar 23 16:22:58 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -33,6 +33,8 @@ char            *check_space(char *str)
   int           j;
 
   if (str == NULL)
+    return (NULL);
+  if (*str == 0)
     return (NULL);
   dest = my_memset(my_strlen(str) * 10);
   i = j = 0;

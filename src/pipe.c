@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Mon Mar 13 12:16:06 2017 Joubert Miguel
-** Last update Thu Mar 23 13:44:11 2017 Joubert Miguel
+** Last update Thu Mar 23 16:20:46 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -74,7 +74,10 @@ void		exec_pipe_son(char **cmd, char **env, int index)
 	return (exec_pipe_son(cmd, env, ++index));
       else if (is_out(cmd[index + 1]) == 1)
 	return (exec_out(cmd[index + 1], env));
+      else if (is_in(cmd[index + 1]) == 1)
+	return (exec_in(cmd[index + 1], env));
       wait(NULL);
+      my_command(cmd[index + 1], env);
       execve(path, args, env);
     }
 }
@@ -82,7 +85,12 @@ void		exec_pipe_son(char **cmd, char **env, int index)
 int		exec_pipe(char **cmd, char **env)
 {
   pid_t		pid;
+  int		i;
 
+  i = -1;
+  while (cmd[++i])
+    if (verify_cmd(env, cmd[i], 9, 0) == 1)
+      return (1);
   is_file_to_create(cmd, env);
   if ((pid = fork()) == -1)
     return (1);

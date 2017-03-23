@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Wed Jan 11 12:15:53 2017 Joubert Miguel
-** Last update Thu Mar 23 13:44:34 2017 Joubert Miguel
+** Last update Thu Mar 23 14:52:16 2017 Joubert Miguel
 */
 
 # ifndef _MY_H
@@ -128,6 +128,8 @@ int		verify_unsetenv(t_cmd, int);
 int		verify_setenv(t_cmd, int);
 
 int		verify_env(t_cmd, int);
+
+int             null_cmd(char *, char **);
 
 /* SIGNAL */
 
