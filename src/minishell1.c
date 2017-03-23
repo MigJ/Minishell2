@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Tue Jan 10 13:59:35 2017 Joubert Miguel
-** Last update Thu Mar 23 14:11:31 2017 Joubert Miguel
+** Last update Thu Mar 23 14:12:18 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -119,9 +119,7 @@ int	main(int ac, char **av, char **env)
 	{
 	  Sh.s = epur_str(Sh.s);
 	  if (check_shell(Sh.s) == 1)
-	    {
-	      ret = my_first_shell(&env, Sh, ret);
-	    }
+	    ret = my_first_shell(&env, Sh, ret);
 	  else
 	    ret = my_second_shell(&env, Sh, ret);
 	  (isatty(0) == 1) ? my_putstr("$>MIGZER ") : 0;
