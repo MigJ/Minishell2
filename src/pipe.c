@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Mon Mar 13 12:16:06 2017 Joubert Miguel
-** Last update Thu Mar 23 16:20:46 2017 Joubert Miguel
+** Last update Fri Mar 24 18:25:38 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -77,8 +77,11 @@ void		exec_pipe_son(char **cmd, char **env, int index)
       else if (is_in(cmd[index + 1]) == 1)
 	return (exec_in(cmd[index + 1], env));
       wait(NULL);
-      my_command(cmd[index + 1], env);
-      execve(path, args, env);
+      if (my_strncmp(cmd[index + 1], "cd", 2) == 0) builtin_to_file("cd");
+      else if (my_strncmp(cmd[index + 1], "env", 3) == 0) builtin_to_file("env");
+      else if (my_strncmp(cmd[index + 1], "setenv", 6) == 0) builtin_to_file("setenv");
+      else if (my_strncmp(cmd[index + 1], "unsetenv", 8) == 0) builtin_to_file("unsetenv");
+      else execve(path, args, env);
     }
 }
 
@@ -86,7 +89,9 @@ int		exec_pipe(char **cmd, char **env)
 {
   pid_t		pid;
   int		i;
+  char		*is_builtin;
 
+  is_builtin = my_memset(10);
   i = -1;
   while (cmd[++i])
     if (verify_cmd(env, cmd[i], 9, 0) == 1)
@@ -101,6 +106,9 @@ int		exec_pipe(char **cmd, char **env)
     }
   else
     wait(NULL);
+  is_builtin = is_builtin_in_file();
+  if (my_strncmp(is_builtin, "cd", 2) == 0)
+    my_cd(cmd[--i], env);
   return (0);
 }
 

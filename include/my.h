@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Wed Jan 11 12:15:53 2017 Joubert Miguel
-** Last update Thu Mar 23 14:52:16 2017 Joubert Miguel
+** Last update Fri Mar 24 18:20:50 2017 Joubert Miguel
 */
 
 # ifndef _MY_H
@@ -131,19 +131,25 @@ int		verify_env(t_cmd, int);
 
 int             null_cmd(char *, char **);
 
-/* SIGNAL */
+/*
+** SIGNAL
+*/
 
 int	       	my_signal(int);
 
 void		sig_handler(int);
 
-/* PIPE */
+/*
+** PIPE
+*/
 
 int		is_piped(char *);
 
 char            **get_pipe_cmd(char *);
 
 int             exec_pipe(char **, char **);
+
+void            exec_pipe_son(char **, char **, int);
 
 int             pipe_cmd(char *, int *, char **);
 
@@ -190,5 +196,13 @@ void            exec_double_out(char *, char **);
 int		is_double_in(char *);
 
 void		exec_double_in(char *, char **, t_shell);
+
+/*
+** FILE
+*/
+
+char		*is_builtin_in_file();
+
+int             builtin_to_file(char *);
 
 # endif /* MY_H */

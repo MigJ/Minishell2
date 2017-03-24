@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Tue Jan 10 13:59:35 2017 Joubert Miguel
-** Last update Thu Mar 23 14:12:18 2017 Joubert Miguel
+** Last update Fri Mar 24 17:50:33 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -61,7 +61,8 @@ char	**verify_path(char **env)
   int	i;
   int	bol;
 
-  dest = malloc(sizeof(char *) * my_strlen_d_char(env) + 1);
+  if ((dest = malloc(sizeof(char *) * my_strlen_d_char(env) + 1)) == NULL)
+    return (NULL);
   bol = i = 0;
   while (env[i] != NULL)
     {

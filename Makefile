@@ -5,7 +5,7 @@
 ## Login   <miguel.joubert@epitech.eu>
 ## 
 ## Started on  Wed Mar 15 13:04:12 2017 Joubert Miguel
-## Last update Thu Mar 23 15:16:30 2017 Joubert Miguel
+## Last update Fri Mar 24 18:23:58 2017 Joubert Miguel
 ##
 
 CC	=	gcc
@@ -19,6 +19,7 @@ PROJECT =	src/minishell1.c		\
 		src/double_out.c		\
 		src/double_in.c			\
 		src/env.c			\
+		src/file.c			\
 		src/in.c			\
 		src/pipe.c			\
 		src/out.c			\
