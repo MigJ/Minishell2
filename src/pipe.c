@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Mon Mar 13 12:16:06 2017 Joubert Miguel
-** Last update Fri Mar 24 18:25:38 2017 Joubert Miguel
+** Last update Fri Mar 24 20:32:05 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -109,6 +109,10 @@ int		exec_pipe(char **cmd, char **env)
   is_builtin = is_builtin_in_file();
   if (my_strncmp(is_builtin, "cd", 2) == 0)
     my_cd(cmd[--i], env);
+  if (my_strncmp(is_builtin, "env", 3) == 0 ||
+      my_strncmp(is_builtin, "setenv", 3) == 0 ||
+      my_strncmp(is_builtin, "unsetenv", 3) == 0)
+    my_env(env, cmd[--i]);
   return (0);
 }
 
