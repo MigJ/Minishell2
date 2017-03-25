@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Wed Jan 11 12:15:53 2017 Joubert Miguel
-** Last update Fri Mar 24 18:20:50 2017 Joubert Miguel
+** Last update Sat Mar 25 01:05:52 2017 Joubert Miguel
 */
 
 # ifndef _MY_H
@@ -147,7 +147,7 @@ int		is_piped(char *);
 
 char            **get_pipe_cmd(char *);
 
-int             exec_pipe(char **, char **);
+int             exec_pipe(char **, char ***, t_shell);
 
 void            exec_pipe_son(char **, char **, int);
 
@@ -201,7 +201,7 @@ void		exec_double_in(char *, char **, t_shell);
 ** FILE
 */
 
-char		*is_builtin_in_file();
+char		*is_builtin_in_file(char **, t_shell Sh);
 
 int             builtin_to_file(char *);
 
