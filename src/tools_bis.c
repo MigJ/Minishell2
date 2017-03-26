@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Sat Jan 21 14:21:14 2017 Joubert Miguel
-** Last update Sat Jan 21 18:36:23 2017 Joubert Miguel
+** Last update Sun Mar 26 20:06:26 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -29,6 +29,8 @@ int	my_strncmp(char *s1, char *s2, int n)
   int i;
 
   i = 0;
+  if (!s1 || !s2)
+    return (-1);
   while (s1[i] == s2[i] && s1[i] && s2[i] && i < n)
     i++;
   if ((s1[i] == '\0' && s2[i] == '\0') || i == n)
