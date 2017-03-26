@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Mon Mar 13 12:16:06 2017 Joubert Miguel
-** Last update Sat Mar 25 01:05:26 2017 Joubert Miguel
+** Last update Sun Mar 26 20:42:05 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -89,13 +89,15 @@ int		exec_pipe(char **cmd, char ***env, t_shell Sh)
 {
   pid_t		pid;
   int		i;
+  int		nf;
   char		*is_builtin;
 
   is_builtin = my_memset(10);
   i = -1;
   while (cmd[++i])
-    if (verify_cmd(*env, cmd[i], 9, 0) == 1)
-      return (1);
+    nf = verify_cmd(*env, cmd[i], 9, 0);
+  if (nf == 1)
+    return (1);
   is_file_to_create(cmd, *env);
   if ((pid = fork()) == -1)
     return (1);

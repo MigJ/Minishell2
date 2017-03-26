@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Wed Mar 15 13:28:52 2017 Joubert Miguel
-** Last update Sat Mar 25 01:06:15 2017 Joubert Miguel
+** Last update Sun Mar 26 20:43:26 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -37,7 +37,7 @@ int		my_second_shell(char ***env, t_shell Sh, int ret)
       if (null_cmd(Sh.s, get_pipe_cmd(Sh.s)) == -1)
 	return (1);
       else if (is_piped(Sh.s) == 1)
-	exec_pipe(get_pipe_cmd(Sh.s), env, Sh);
+	ret = exec_pipe(get_pipe_cmd(Sh.s), env, Sh);
       else if ((error_out = is_out(Sh.s)) == 1)
 	exec_out(Sh.s, *env);
       else if ((error_in = is_in(Sh.s)) == 1)
