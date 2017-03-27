@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Fri Jan 20 18:53:13 2017 Joubert Miguel
-** Last update Wed Mar 22 13:23:38 2017 Joubert Miguel
+** Last update Mon Mar 27 17:44:57 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -25,8 +25,10 @@ char	**my_str_sep(char *str, char sep)
   i = 0;
   while (str[i])
     {
-      while (str[i] == '\t')
+      while (str[i] == '\t') {
 	i++;
+	if (str[i] != ' ' && str[i] != '\t') arr[j][k++] = ' ';
+      }
       if (str[i] == sep)
 	{
 	  i++, j++;
