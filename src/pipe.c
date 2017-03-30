@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Mon Mar 13 12:16:06 2017 Joubert Miguel
-** Last update Thu Mar 30 15:12:17 2017 Joubert Miguel
+** Last update Thu Mar 30 15:12:52 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -67,7 +67,7 @@ void		exec_pipe_son(char **cmd, char **env, int index)
 	  !my_strncmp(cmd[index], "setenv", 6) ||
 	  !my_strncmp(cmd[index], "unsetenv", 8))
 	env = my_env(env, cmd[index++]);
-      else printf("exec -->%d\n", execve(path, args, env));
+      else execve(path, args, env);
       exit(0);
     }
   else
