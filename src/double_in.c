@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Wed Mar 15 23:53:18 2017 Joubert Miguel
-** Last update Wed Mar 22 12:43:26 2017 Joubert Miguel
+** Last update Thu Mar 30 12:28:59 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -41,11 +41,15 @@ void		exec_double_in_son(char *cmd, char **env, t_shell Sh)
   char		*gnl;
 
   command = my_str_to_wordtab(cmd, '<', 0);
-  pipe(pfd);
+  if (pipe(pfd) == -1)
+    exit(84);
   heredoc_gnl(&gnl, check_space(command[1]), pfd[1]);
-  close(pfd[1]);
-  dup2(pfd[0], 0);
-  close(pfd[0]);
+  if (close(pfd[1]) == -1)
+    exit(84);
+  if (dup2(pfd[0], 0) == -1)
+    exit(84);
+  if (close(pfd[0]) == -1)
+    exit(84);
   Sh.s = check_space(command[0]);
   my_first_shell(&env, Sh, 0);  
 }
@@ -54,7 +58,8 @@ void		exec_double_in(char *cmd, char **env, t_shell Sh)
 {
   pid_t         pid;
 
-  pid = fork();
+  if ((pid = fork()) == -1)
+    exit(84);
   if (pid == 0)
     {
       exec_double_in_son(cmd, env, Sh);

@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Wed Mar 15 22:38:13 2017 Joubert Miguel
-** Last update Thu Mar 23 13:56:37 2017 Joubert Miguel
+** Last update Thu Mar 30 12:30:34 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -42,12 +42,14 @@ void            exec_in(char *cmd, char **env)
   char          *path;
 
   command = my_str_to_wordtab(cmd, '<', 0);
-  fd = open(check_space(command[1]), O_RDONLY);
+  if ((fd = open(check_space(command[1]), O_RDONLY)) == -1)
+    exit (84);
   if ((pid = fork()) < 0)
     exit (84);
   if (pid == 0)
     {
-      dup2(fd, 0);
+      if (dup2(fd, 0) == -1)
+	exit (84);
       path = ret_good_path(0, env, my_str_to_wordtab(command[0], ' ', 0));
       args = my_ret_args(my_str_to_wordtab(command[0], ' ', 0), path);
       execve(path, args, env);
@@ -55,7 +57,8 @@ void            exec_in(char *cmd, char **env)
     }
   else
     {
-      close (fd);
+      if (close (fd) == -1)
+	exit (84);
       wait(NULL);
     }
 }

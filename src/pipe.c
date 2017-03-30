@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Mon Mar 13 12:16:06 2017 Joubert Miguel
-** Last update Mon Mar 27 21:24:39 2017 Joubert Miguel
+** Last update Thu Mar 30 12:58:10 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -49,23 +49,25 @@ void		exec_pipe_son(char **cmd, char **env, int index)
   pid_t		pid;
   int   	pfd[2];
 
-  if ((pipe(pfd)) == - 1)
-    exit (1);
+  if (pipe(pfd) == - 1)
+    exit (84);
   if ((pid = fork()) == -1)
-    exit (1);
+    exit (84);
   else if (pid == 0)
     {
       command = my_str_to_wordtab(cmd[index], ' ', 0);
       path = ret_good_path(index, env, cmd);
       args = my_ret_args(command, path);
-      dup2(pfd[1], 1);
-      close(pfd[0]);
+      if (dup2(pfd[1], 1) == -1)
+	exit (84);
+      if (close(pfd[0]) == -1)
+	exit (84);
       if (!my_strncmp(cmd[index], "cd", 2) ||
 	  !my_strncmp(cmd[index], "env", 3) ||
 	  !my_strncmp(cmd[index], "setenv", 6) ||
 	  !my_strncmp(cmd[index], "unsetenv", 8))
 	env = my_env(env, cmd[index++]);
-      else execve(path, args, env);
+      else printf("exec -->%d\n", execve(path, args, env));
       exit(0);
     }
   else
@@ -73,8 +75,10 @@ void		exec_pipe_son(char **cmd, char **env, int index)
       command = my_str_to_wordtab(cmd[index + 1], ' ', 0);
       path = ret_good_path(index + 1, env, cmd);
       args = my_ret_args(command, path);
-      dup2(pfd[0], 0);
-      close(pfd[1]);
+      if (dup2(pfd[0], 0) == -1)
+	exit (84);
+      if (close(pfd[1]) == -1)
+	exit (84);
       if (index < my_strlen_d_char(cmd) - 2)
 	return (exec_pipe_son(cmd, env, ++index));
       else if (is_out(cmd[index + 1]) == 1)
@@ -103,7 +107,7 @@ int		exec_pipe(char **cmd, char ***env, t_shell Sh)
     nf = (nf != 1) ? verify_cmd(*env, cmd[i], 9, 0) : nf;
   is_file_to_create(cmd, *env);
   if ((pid = fork()) == -1)
-    return (1);
+    exit (84);
   if (pid == 0)
     {
       exec_pipe_son(cmd, *env, 0);

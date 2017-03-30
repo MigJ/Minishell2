@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Wed Mar 15 20:57:05 2017 Joubert Miguel
-** Last update Sun Mar 26 22:04:34 2017 Joubert Miguel
+** Last update Thu Mar 30 12:31:24 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -42,7 +42,7 @@ void		create_file_before(char *cmd, char **env)
   pid_t		pid;
 
   if ((pid = fork()) == -1)
-    exit (1);
+    exit (84);
   else if (pid == 0)
     {
       command = my_str_to_wordtab(cmd, '>', 0);
@@ -69,11 +69,12 @@ void		exec_out(char *cmd, char **env)
 
   command = my_str_to_wordtab(cmd, '>', 0);
   fd = open(check_space(command[1]), O_WRONLY | O_CREAT | O_TRUNC, 0644);
-  if ((pid = fork()) < 0)
+  if ((pid = fork()) == -1)
     exit (84);
   if (pid == 0)
     {
-      dup2(fd, 1);
+      if (dup2(fd, 1) == -1)
+	exit (84);
       path = ret_good_path(0, env, my_str_to_wordtab(command[0], ' ', 0));
       args = my_ret_args(my_str_to_wordtab(command[0], ' ', 0), path);
       execve(path, args, env);
@@ -81,7 +82,8 @@ void		exec_out(char *cmd, char **env)
     }
   else
     {
-      close (fd);
+      if (close (fd) == -1)
+	exit (84);
       wait(NULL);
     }
 }

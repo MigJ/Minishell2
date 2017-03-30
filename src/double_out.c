@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Wed Mar 15 23:53:52 2017 Joubert Miguel
-** Last update Thu Mar 16 14:50:29 2017 Joubert Miguel
+** Last update Thu Mar 30 12:28:04 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -30,12 +30,14 @@ void            exec_double_out(char *cmd, char **env)
   char          *path;
 
   command = my_str_to_wordtab(cmd, '>', 0);
-  fd = open(check_space(command[1]), O_WRONLY | O_CREAT | O_APPEND, 0644);
+  if ((fd = open(check_space(command[1]), O_WRONLY | O_CREAT | O_APPEND, 0644)) == -1)
+    exit (84);
   if ((pid = fork()) < 0)
     exit (84);
   if (pid == 0)
     {
-      dup2(fd, 1);
+      if (dup2(fd, 1) == -1)
+	exit (84);
       path = ret_good_path(0, env, my_str_to_wordtab(command[0], ' ', 0));
       args = my_ret_args(my_str_to_wordtab(command[0], ' ', 0), path);
       execve(path, args, env);
@@ -43,7 +45,8 @@ void            exec_double_out(char *cmd, char **env)
     }
   else
     {
-      close (fd);
+      if (close(fd) == -1)
+	exit (84);
       wait(NULL);
     }
 }

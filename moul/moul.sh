@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MYSHELL="$PWD/minishell2"
+MYSHELL="$PWD/mysh"
 REFER="/bin/tcsh -f"
 
 CAT=`which cat`
@@ -109,7 +109,7 @@ load_test()
         echo "---------- TCSH Output : ----------" >&2
         $CAT "/tmp/.output.refer.$$" >&2
         echo "---------- END ----------" >&2
-        echo "---------- MINISHELL2 Output : ----------" >&2
+        echo "---------- MYSH Output : ----------" >&2
         $CAT /tmp/.output.shell.$$ >&2
         echo "---------- END ----------" >&2
         echo "" >&2
@@ -125,7 +125,7 @@ make_manifest()
 {
   echo '{'
   echo '  "module": "B-PSU-156",'
-  echo '  "project": "minishell2",'
+  echo '  "project": "mysh",'
   echo '  "skills": {'
   i=0
   for lst in `cat tests | grep "^\[.*\]$" | grep -vi end | sed s/'\['// | sed s/'\]'//`
