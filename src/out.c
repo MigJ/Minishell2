@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Wed Mar 15 20:57:05 2017 Joubert Miguel
-** Last update Thu Mar 30 12:31:24 2017 Joubert Miguel
+** Last update Thu Mar 30 14:52:02 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -63,12 +63,18 @@ void		exec_out(char *cmd, char **env)
 {
   int		fd;
   int		pid;
+  int		is_builtin;
   char		**command;
   char          **args;
   char		*path;
 
+  is_builtin = 0;
   command = my_str_to_wordtab(cmd, '>', 0);
   fd = open(check_space(command[1]), O_WRONLY | O_CREAT | O_TRUNC, 0644);
+  if (my_strncmp(command[0], "env", 3) == 0 ||
+      my_strncmp(command[0], "setenv", 3) == 0 ||
+      my_strncmp(command[0], "unsetenv", 3) == 0)
+    is_builtin = 1;
   if ((pid = fork()) == -1)
     exit (84);
   if (pid == 0)
@@ -77,13 +83,15 @@ void		exec_out(char *cmd, char **env)
 	exit (84);
       path = ret_good_path(0, env, my_str_to_wordtab(command[0], ' ', 0));
       args = my_ret_args(my_str_to_wordtab(command[0], ' ', 0), path);
-      execve(path, args, env);
-      exit (0);
+      if (!is_builtin)
+	execve(path, args, env);
+      else
+	env = my_env(env, check_space(command[0]));
+      exit(0);
     }
-  else
-    {
-      if (close (fd) == -1)
-	exit (84);
-      wait(NULL);
-    }
+  else {
+    if (close(fd) == -1)
+      exit (84);
+    wait(NULL);
+  }
 }
