@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Mon Mar 13 12:16:06 2017 Joubert Miguel
-** Last update Thu Mar 30 15:12:52 2017 Joubert Miguel
+** Last update Mon Apr  3 21:25:54 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -85,12 +85,12 @@ void		exec_pipe_son(char **cmd, char **env, int index)
 	return (exec_out(cmd[index + 1], env));
       else if (is_in(cmd[index + 1]) == 1)
 	return (exec_in(cmd[index + 1], env));
+      else execve(path, args, env);
       wait(NULL);
       if (my_strncmp(cmd[index + 1], "cd", 2) == 0) builtin_to_file("cd");
       else if (my_strncmp(cmd[index + 1], "env", 3) == 0) builtin_to_file("env");
       else if (my_strncmp(cmd[index + 1], "setenv", 6) == 0) builtin_to_file("setenv");
       else if (my_strncmp(cmd[index + 1], "unsetenv", 8) == 0) builtin_to_file("unsetenv");
-      else execve(path, args, env);
     }
 }
 
@@ -102,6 +102,7 @@ int		exec_pipe(char **cmd, char ***env, t_shell Sh)
   char		*is_builtin;
 
   is_builtin = my_memset(10);
+  nf = 0;
   i = -1;
   while (cmd[++i])
     nf = (nf != 1) ? verify_cmd(*env, cmd[i], 9, 0) : nf;
@@ -135,9 +136,9 @@ char		**get_pipe_cmd(char *str)
 
   j = k = 0;
   i = (str[0] == ' ') ? 1 : 0;
-  if ((dest = malloc(sizeof(char *) * 10)) == NULL)
+  if ((dest = malloc(sizeof(char *) * 50)) == NULL)
     return (NULL);
-  if ((cmd = malloc(sizeof(char *) * 10)) == NULL)
+  if ((cmd = malloc(sizeof(char *) * 50)) == NULL)
     return (NULL);
   cmd[0] = my_memset(100);
   while (str[i + 1])
@@ -157,7 +158,7 @@ char		**get_pipe_cmd(char *str)
   j = -1;
   while (cmd[++j])
     {
-      dest[j] = my_memset(my_strlen(cmd[j]) * 9);
+      dest[j] = my_memset(my_strlen(cmd[j]) * 10);
       dest[j] = check_space(cmd[j]);
     }
   dest[j] = NULL;

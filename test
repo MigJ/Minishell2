@@ -1,2 +1,0 @@
-cat /dev/urandom | cat -e
-exit | cat
