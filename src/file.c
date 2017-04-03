@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Fri Mar 24 18:12:05 2017 Joubert Miguel
-** Last update Thu Mar 30 12:29:50 2017 Joubert Miguel
+** Last update Mon Apr  3 15:58:25 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -19,7 +19,7 @@ char		*is_builtin_in_file(char **env, t_shell Sh)
   if ((fd = open("is_builtin", O_RDONLY)) == -1)
     return (NULL);
   read(fd, builtin, 10);
-  Sh.s = "rm is_builtin";
+  Sh.s = "/bin/rm is_builtin";
   my_first_shell(&env, Sh, 0);
   if (close(fd) == -1)
     exit (84);

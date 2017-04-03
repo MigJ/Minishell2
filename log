@@ -1,21 +1,28 @@
-==13186== Memcheck, a memory error detector
-==13186== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
-==13186== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
-==13186== Command: ./mysh
-==13186== Parent PID: 13140
-==13186== 
-==13186== 
-==13186== HEAP SUMMARY:
-==13186==     in use at exit: 1,306,324 bytes in 1,258 blocks
-==13186==   total heap usage: 1,259 allocs, 1 frees, 1,314,516 bytes allocated
-==13186== 
-==13186== LEAK SUMMARY:
-==13186==    definitely lost: 703,124 bytes in 663 blocks
-==13186==    indirectly lost: 603,200 bytes in 595 blocks
-==13186==      possibly lost: 0 bytes in 0 blocks
-==13186==    still reachable: 0 bytes in 0 blocks
-==13186==         suppressed: 0 bytes in 0 blocks
-==13186== Rerun with --leak-check=full to see details of leaked memory
-==13186== 
-==13186== For counts of detected and suppressed errors, rerun with: -v
-==13186== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==3110== Memcheck, a memory error detector
+==3110== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==3110== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==3110== Command: ./mysh
+==3110== Parent PID: 2704
+==3110== 
+==3110== Conditional jump or move depends on uninitialised value(s)
+==3110==    at 0x4032A6: exec_pipe (pipe.c:107)
+==3110==    by 0x4014A3: my_second_shell (minishell2.c:40)
+==3110==    by 0x401310: main (minishell1.c:125)
+==3110==  Uninitialised value was created by a stack allocation
+==3110==    at 0x40327B: exec_pipe (pipe.c:98)
+==3110== 
+==3110== 
+==3110== HEAP SUMMARY:
+==3110==     in use at exit: 3,122,284 bytes in 3,199 blocks
+==3110==   total heap usage: 3,199 allocs, 0 frees, 3,122,284 bytes allocated
+==3110== 
+==3110== LEAK SUMMARY:
+==3110==    definitely lost: 1,749,327 bytes in 1,668 blocks
+==3110==    indirectly lost: 1,364,760 bytes in 1,529 blocks
+==3110==      possibly lost: 0 bytes in 0 blocks
+==3110==    still reachable: 8,197 bytes in 2 blocks
+==3110==         suppressed: 0 bytes in 0 blocks
+==3110== Rerun with --leak-check=full to see details of leaked memory
+==3110== 
+==3110== For counts of detected and suppressed errors, rerun with: -v
+==3110== ERROR SUMMARY: 3 errors from 1 contexts (suppressed: 0 from 0)
