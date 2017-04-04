@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Fri Mar 24 18:12:05 2017 Joubert Miguel
-** Last update Mon Apr  3 15:58:25 2017 Joubert Miguel
+** Last update Tue Apr  4 16:55:10 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -30,7 +30,7 @@ int		builtin_to_file(char *str)
 {
   int		fd;
 
-  if ((fd = open("is_builtin", O_WRONLY | O_CREAT | O_TRUNC, 0644)) == -1)
+  if ((fd = open("is_builtin", O_WRONLY | O_CREAT | O_TRUNC, 0664)) == -1)
     return (-1);
   write(fd, str, my_strlen(str));
   if (close(fd) == -1)

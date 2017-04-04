@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Wed Mar 15 20:57:05 2017 Joubert Miguel
-** Last update Thu Mar 30 14:52:02 2017 Joubert Miguel
+** Last update Tue Apr  4 17:01:14 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -70,7 +70,7 @@ void		exec_out(char *cmd, char **env)
 
   is_builtin = 0;
   command = my_str_to_wordtab(cmd, '>', 0);
-  fd = open(check_space(command[1]), O_WRONLY | O_CREAT | O_TRUNC, 0644);
+  fd = open(check_space(command[1]), O_WRONLY | O_CREAT, 0664);
   if (my_strncmp(command[0], "env", 3) == 0 ||
       my_strncmp(command[0], "setenv", 3) == 0 ||
       my_strncmp(command[0], "unsetenv", 3) == 0)
