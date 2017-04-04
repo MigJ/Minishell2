@@ -1,4 +1,0 @@
- echo "echo -n hello > tutu" | ./mysh
- echo "echo world >> tutu" | ./mysh
-
-< >>

@@ -5,7 +5,7 @@
 ## Login   <miguel.joubert@epitech.eu>
 ## 
 ## Started on  Wed Mar 15 13:04:12 2017 Joubert Miguel
-## Last update Fri Mar 24 18:23:58 2017 Joubert Miguel
+## Last update Tue Apr  4 18:33:42 2017 Joubert Miguel
 ##
 
 CC	=	gcc
@@ -27,6 +27,7 @@ PROJECT =	src/minishell1.c		\
 		src/retpath.c			\
 		src/semicolon.c			\
 		src/signal.c			\
+		src/some_redir.c		\
 		src/tools.c			\
 		src/tools_bis.c			\
 		src/verify_pipe.c		\

@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Wed Mar 15 13:28:52 2017 Joubert Miguel
-** Last update Mon Mar 27 17:16:53 2017 Joubert Miguel
+** Last update Tue Apr  4 18:39:46 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -29,8 +29,12 @@ int		my_second_shell(char ***env, t_shell Sh, int ret)
   int		error_out;
   char		**cmd;
   int		i;
+  int		redis;
 
   cmd = my_str_sep(Sh.s, ';');
+  redis = ret_line(cmd);
+  if (redis >= 0)
+    cmd = ret_news_cmd(cmd, redis);
   i = ret = 0;
   while ((Sh.s = check_space(cmd[i])))
     {

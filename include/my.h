@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Wed Jan 11 12:15:53 2017 Joubert Miguel
-** Last update Sat Mar 25 01:05:52 2017 Joubert Miguel
+** Last update Tue Apr  4 18:32:53 2017 Joubert Miguel
 */
 
 # ifndef _MY_H
@@ -204,5 +204,17 @@ void		exec_double_in(char *, char **, t_shell);
 char		*is_builtin_in_file(char **, t_shell Sh);
 
 int             builtin_to_file(char *);
+
+/*
+** SOME REDIS
+*/
+
+char            **ret_news_cmd(char **, int);
+
+char            *ret_new_line(char *);
+
+int             ret_line(char **);
+
+int             is_some_redi(char *);
 
 # endif /* MY_H */
