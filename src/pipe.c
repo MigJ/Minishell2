@@ -5,7 +5,7 @@
 ** Login   <miguel.joubert@epitech.eu>
 ** 
 ** Started on  Mon Mar 13 12:16:06 2017 Joubert Miguel
-** Last update Mon Apr  3 21:25:54 2017 Joubert Miguel
+** Last update Tue Apr  4 13:16:26 2017 Joubert Miguel
 */
 
 #include "../include/my.h"
@@ -85,12 +85,13 @@ void		exec_pipe_son(char **cmd, char **env, int index)
 	return (exec_out(cmd[index + 1], env));
       else if (is_in(cmd[index + 1]) == 1)
 	return (exec_in(cmd[index + 1], env));
-      else execve(path, args, env);
-      wait(NULL);
-      if (my_strncmp(cmd[index + 1], "cd", 2) == 0) builtin_to_file("cd");
+      else if (my_strncmp(cmd[index + 1], "cd", 2) == 0) builtin_to_file("cd");
       else if (my_strncmp(cmd[index + 1], "env", 3) == 0) builtin_to_file("env");
       else if (my_strncmp(cmd[index + 1], "setenv", 6) == 0) builtin_to_file("setenv");
       else if (my_strncmp(cmd[index + 1], "unsetenv", 8) == 0) builtin_to_file("unsetenv");
+      else execve(path, args, env);
+      wait(NULL);
+      
     }
 }
 
@@ -99,13 +100,19 @@ int		exec_pipe(char **cmd, char ***env, t_shell Sh)
   pid_t		pid;
   int		i;
   int		nf;
+  int		tmp;
+  int		is_exit;
   char		*is_builtin;
 
   is_builtin = my_memset(10);
-  nf = 0;
+  is_exit = nf = 0;
   i = -1;
-  while (cmd[++i])
-    nf = (nf != 1) ? verify_cmd(*env, cmd[i], 9, 0) : nf;
+  while (cmd[++i]) {
+    if (!my_strcmp(cmd[i], "exit")) is_exit = 1;
+    else nf = verify_cmd(*env, cmd[i], 9, 0);
+    (nf == 1) ? tmp = 1 : 0;
+  }
+  nf = tmp;
   is_file_to_create(cmd, *env);
   if ((pid = fork()) == -1)
     exit (84);
@@ -123,6 +130,8 @@ int		exec_pipe(char **cmd, char ***env, t_shell Sh)
       my_strncmp(is_builtin, "setenv", 3) == 0 ||
       my_strncmp(is_builtin, "unsetenv", 3) == 0)
     *env = my_env(*env, cmd[--i]);
+  if (is_exit)
+    exit (nf);
   return (nf);
 }
 
