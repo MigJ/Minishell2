@@ -13,3 +13,5 @@ USAGE
 BONUS
 
 reverse shell : Shell whose server is the machine of the attacker and the client of the attacked.
+
+Note: 23/20
